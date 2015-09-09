@@ -20,7 +20,7 @@ def label():
         print "enter main.label try"
         print session.get('id')
         print getpic(session.get('id'))
-        pic, idx, ttl, ques = getpic(session.get('id'))
+        pic, idx, ttl = getpic(session.get('id'))
     except IndexError:
         session.clear()
         form = LoginForm()
@@ -41,11 +41,11 @@ def label():
 
 @main.route('/newpic', methods=['GET'])
 def newpic():
-    pic, idx, ttl, ques = getpic(session.get('id'))
+    pic, idx, ttl = getpic(session.get('id'))
     if pic is None:
         return render_template('end.html')
-    print 'new', pic, '##', ques
-    return jsonify({'pic': pic, 'idx': idx, 'ttl': ttl, 'ques': ques})
+    print 'new', pic
+    return jsonify({'pic': pic, 'idx': idx, 'ttl': ttl})
 
 
 @main.route('/record/<pictureNum>/<duration>/<answer>', methods=['POST'])

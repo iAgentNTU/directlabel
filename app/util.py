@@ -45,9 +45,9 @@ def getpic(userid):
         # print "nextpic:"+str(nextpic)
         #quesNum = progress / 100 + 1
         #question = Questions.query.filter_by(id=quesNum)[0].statement
-        return nextpic, progress+1, total, None
+        return nextpic, progress+1, total#, None
     else:
-        return None, None, None, None
+        return None, None, None#, None
 
 if __name__ == '__main__':
     for i in range(50):
