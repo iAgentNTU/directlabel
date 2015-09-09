@@ -34,9 +34,9 @@ def label():
     
     userid = session.get('id')[0]
     user = User.query.filter_by(id=userid)[0]
-    quesNum = user.progress / 100 + 1
-    question = Questions.query.filter_by(id=quesNum)[0].statement
-    return render_template('label.html', pic=pic, idx=idx, ttl=ttl, question=question)
+    #quesNum = user.progress / 100 + 1
+    #question = Questions.query.filter_by(id=quesNum)[0].statement
+    return render_template('label.html', pic=pic, idx=idx, ttl=ttl)
 
 
 @main.route('/newpic', methods=['GET'])
@@ -61,10 +61,10 @@ def data(pictureNum, duration, answer):
     
     userid = session.get('id')[0]
     user = User.query.filter_by(id=userid)[0]
-    question = user.progress / 100 + 1
+    #question = user.progress / 100 + 1
     user.progress += 1
-    data = Data(labelTime=labelTime, question=question,
-                pictureNum=pictureNum, userid=userid, duration=duration, answer=answer)
+    data = Data(labelTime=labelTime, #question=question,
+                pictureNum=pictureNum, userid=userid, duration=duration, label=answer)
     db.session.add(data)
     db.session.commit()
 

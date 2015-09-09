@@ -103,8 +103,8 @@ function show(s, idx, ttl){
 	return '('+idx+'/'+ttl+')  '+s.substring(0,4)+'/'+s.substring(4,6)+'/'+s.substring(6,8)+' '+s.substring(9,11)+':'+s.substring(11,13);
 }
 
-function setpic(newpic, newidx, ttlidx, question){
-	console.log(question);
+function setpic(newpic, newidx, ttlidx){
+	question = "What is the usage condition of the room? 1. Meeting 2. Lecture 3. Study 4. Empty 5. Others(Please describe)";
 	document.getElementById('question').innerHTML = question;
 	
 	picObj = document.getElementById('pic');

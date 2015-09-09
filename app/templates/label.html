@@ -20,6 +20,34 @@
 				<img id="pic" style="width: 80%; height: 80%">
 			</div>
     			<h5 id="time" align="center"></h5><br>
+			<!--
+			<div id="upper">
+				<div class="choicecontainer">
+					<div class="middle choice" value="Meeting" onclick="light(this)" style="background-color: rgb(51, 255, 255);">
+						<div class="floater"></div>
+						<div class="sword">Meeting</div>
+					</div>
+				</div>
+				<div class="choicecontainer">
+					<div class="middle choice" value="Lecture" onclick="light(this)" style="background-color: rgb(51, 255, 255);">
+						<div class="floater"></div>
+						<div class="sword">Lecture</div>
+					</div>
+				</div>
+				<div class="choicecontainer">
+					<div class="middle choice" value="Study" onclick="light(this)" style="background-color: rgb(51, 255, 255);">
+						<div class="floater"></div>
+						<div class="sword">Study</div>
+					</div>
+				</div>
+				<div class="choicecontainer">
+					<div class="middle choice" value="Empty" onclick="light(this)" style="background-color: rgb(51, 255, 255);">
+						<div class="floater"></div>
+						<div class="sword">Empty</div>
+					</div>
+				</div>
+			</div>
+			-->
 			<div id="lower">
 				<h2 id="question" align="center"></h2>
                 		<input type="text" id="reason"></input>
@@ -51,7 +79,7 @@
 	<script src="{{ url_for('static', filename='label.js') }}"></script>
 	<script>
 		//buildup();
-                setpic("{{ pic }}",{{ idx }},{{ ttl }}, "{{ question }}");	
+                setpic("{{ pic }}",{{ idx }},{{ ttl }});	
 	</script>
 
 {% endblock %}
