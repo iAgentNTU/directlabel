@@ -15,47 +15,10 @@ function keyup(event){
 	var value = document.getElementById('reason').value;
 	if(value == "") value = 'None';
 	reason = value;
-	//document.getElementById('word1').innerHTML = value;
-	//document.getElementById('open').style.display = 'none';
 }
-/*
-function setdefaultvalue(label){
-	label_post = label;
-	document.getElementById('open').style.display = 'none';
-}
-
-function clearchoice(){
-	choice = 'None';
-	label_post = 'None';
-	$('.choice').removeClass('active');
-	document.getElementById('open').style.display = 'none';
-}
-
-function setupchoice(button){
-	choice = button.getAttribute("value");
-	label_post = choice;
-	if(choice == 'Others')
-		document.getElementById('open').style.display = 'block';
-	$(button).addClass("active");
-}
-
-function light(button){
-	if(choice == button.getAttribute("value")){
-		clearchoice();
-	}else{
-		clearchoice();
-		setupchoice(button);
-	}
-}
-*/
 function refreshchoice(){
-	//choice = 'None';
-	//label_post = 'None';
 	reason = 'None';
-	//document.getElementById('next').innerHTML = 'Next';
-	//document.getElementById('word1').innerHTML = '';
 	document.getElementById('reason').value = "";
-	//clearchoice();
 }
 
 
@@ -70,14 +33,7 @@ function replace(page){
 }
 
 function record(){
-	//console.log(label_post);
 	console.log(reason);
-	/*
-	if(label_post == 'None'){
-		alert('請選擇一個活動類別');
-		return;
-	}
-	*/
 	if(reason == 'None' || reason == ""){
 		alert('請填寫答案');
 		return;
@@ -87,8 +43,6 @@ function record(){
 	if(post_lock == false){
 		post_lock = true;
 		$.post("/record/"+pic.getAttribute('value')+"/"+timediff+"/"+reason, function(response){
-			//console.log(response);
-			//console.log(response.pic);
 			if(typeof(response) == 'string') replace(response);
 			setpic(response.pic, response.idx, response.ttl, response.ques);
 			post_lock = false;
@@ -103,17 +57,8 @@ function show(s, idx, ttl){
 	return '('+idx+'/'+ttl+')  '+s.substring(0,4)+'/'+s.substring(4,6)+'/'+s.substring(6,8)+' '+s.substring(9,11)+':'+s.substring(11,13);
 }
 
-function setpic(newpic, newidx, ttlidx){
-	question = "Which of the following word best describes the usage of this room? 1. Meeting 2. Lecture 3. Study 4. Empty 5. Others(Please describe in your words)";
-	document.getElementById('question').innerHTML = question;
-	
-	picObj = document.getElementById('pic');
-	picObj.setAttribute("value", newpic);
-	picObj.src = "http://disa.csie.ntu.edu.tw/~janetyc/data/"+newpic.substring(0,8)+"/image_"+newpic+".jpg";
-	while(!picObj.complete);
+function aftercomplete(picObj, newpic, newidx, ttlidx){
 	document.getElementById('time').innerHTML = show(newpic, newidx, ttlidx);
-	//if(newidx%100 == 1 && newidx != 1)
-	//	alert('Congrats~~ Please answer the new question');
 	timestamp = new Date().getTime();
 	
 	document.getElementById("reason").focus();
@@ -126,29 +71,22 @@ function setpic(newpic, newidx, ttlidx){
 			}
 		});
 	}
-	/*
-	picObj.onerror = function(){ 
-		$.getJSON('/newpic', function(response){
-			setpic(response.pic);
-		});
-	}
-	*/
 }
 
+function waitforcomplete(picObj, newpic, newidx, ttlidx){
+	if(picObj.complete) 
+		aftercomplete(picObj, newpic, newidx, ttlidx);
+	else setTimeout( function(){
+		waitforcomplete(picObj, newpic, newidx, ttlidx);
+	}, 100);
+}
 
-// initiating
-/*		
-function buildup(){
-	upper = document.getElementById('upper');
-	choicecontainer = document.createElement("div");
-	choicecontainer.setAttribute("class", "btn-group");
-	for(i=0; i<category.length; ++i){
-		middle = document.createElement("button");
-		middle.setAttribute("class", "choice btn btn-lg btn-default");
-		middle.setAttribute("value", category[i]);
-		middle.setAttribute("onclick", "light(this)");
-		middle.innerHTML = expression[i];
-		choicecontainer.appendChild(middle);
-	}
-	upper.appendChild(choicecontainer);
-}*/
+function setpic(newpic, newidx, ttlidx){
+	question = "Which of the following word best describes the usage of this room? 1. Meeting 2. Lecture 3. Study 4. Empty 5. Others(Please describe in your words)";
+	document.getElementById('question').innerHTML = question;
+	
+	picObj = document.getElementById('pic');
+	picObj.setAttribute("value", newpic);
+	picObj.src = "http://disa.csie.ntu.edu.tw/~janetyc/data/"+newpic.substring(0,8)+"/image_"+newpic+".jpg";
+	waitforcomplete(picObj, newpic, newidx, ttlidx);
+}
