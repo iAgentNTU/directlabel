@@ -21,7 +21,16 @@
 			</div>
     			<h5 id="time" align="center"></h5><br>
 			<div id="lower">
-				<h2 id="question" align="center"></h2>
+				<h2 id="question" align="center">
+					Which of the following word best describes the usage of this room?
+					<ol>
+						<li> Meeting
+						<li> Lecture
+						<li> Study
+						<li> Empty
+						<li> Others(Please describe in your words)
+					</ol>
+				</h2>
                 		<input type="text" id="reason"></input>
 			</div>
 			
@@ -39,7 +48,6 @@
 	</div>
 	<script src="{{ url_for('static', filename='label.js') }}"></script>
 	<script>
-		//buildup();
                 setpic("{{ pic }}",{{ idx }},{{ ttl }});	
 	</script>
 

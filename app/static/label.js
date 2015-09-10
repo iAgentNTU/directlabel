@@ -57,6 +57,9 @@ function show(s, idx, ttl){
 	return '('+idx+'/'+ttl+')  '+s.substring(0,4)+'/'+s.substring(4,6)+'/'+s.substring(6,8)+' '+s.substring(9,11)+':'+s.substring(11,13);
 }
 
+// waitforcomplete and aftercomplete used to be part of setpic, 
+// the separation makes the code dirty but it is the only way I find to implement non-busy waiting
+
 function aftercomplete(picObj, newpic, newidx, ttlidx){
 	document.getElementById('time').innerHTML = show(newpic, newidx, ttlidx);
 	timestamp = new Date().getTime();
@@ -82,8 +85,8 @@ function waitforcomplete(picObj, newpic, newidx, ttlidx){
 }
 
 function setpic(newpic, newidx, ttlidx){
-	question = "Which of the following word best describes the usage of this room? 1. Meeting 2. Lecture 3. Study 4. Empty 5. Others(Please describe in your words)";
-	document.getElementById('question').innerHTML = question;
+	//question = "Which of the following word best describes the usage of this room? 1. Meeting 2. Lecture 3. Study 4. Empty 5. Others(Please describe in your words)";
+	//document.getElementById('question').innerHTML = question;
 	
 	picObj = document.getElementById('pic');
 	picObj.setAttribute("value", newpic);
