@@ -1,10 +1,21 @@
+/*
+#picturearea{
+	width: 50%;
+	float: left;
+}
+
+#submitarea{
+	width: 50%;
+	float: right;
+}
+*/
 #upper{
 	width: 80%;
 	height: auto;
 }
 
 #lower{
-	width: 50%;
+	width: 70%;
 	margin-bottom: 20px;
 }
 
