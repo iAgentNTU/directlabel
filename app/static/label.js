@@ -105,24 +105,16 @@ function show(s, idx, ttl){
 
 function setpic(newpic, newidx, ttlidx){
 	question = "What is the usage condition of the room? 1. Meeting 2. Lecture 3. Study 4. Empty 5. Others(Please describe)";
-	console.log("1111111");
 	document.getElementById('question').innerHTML = question;
-	console.log("2222222");
+	
 	picObj = document.getElementById('pic');
-	console.log("3333333");
 	picObj.setAttribute("value", newpic);
-	console.log("4444444");
 	picObj.src = "http://disa.csie.ntu.edu.tw/~janetyc/data/"+newpic.substring(0,8)+"/image_"+newpic+".jpg";
-	console.log("5555555");
 	while(!picObj.complete);
-	console.log("6666666");
 	document.getElementById('time').innerHTML = show(newpic, newidx, ttlidx);
-	console.log("7777777");
-	if(newidx%100 == 1 && newidx != 1)
-		alert('Congrats~~ Please answer the new question');
-	console.log("8888888");
+	//if(newidx%100 == 1 && newidx != 1)
+	//	alert('Congrats~~ Please answer the new question');
 	timestamp = new Date().getTime();
-	console.log("9999999");
 	
 	document.getElementById("reason").focus();
 	if (!initial) {
