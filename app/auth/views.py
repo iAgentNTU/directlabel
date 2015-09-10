@@ -50,7 +50,7 @@ def register():
                 password=form.password.data,
                 progress=0,
                 start=0,
-                total=1000)
+                total=800)
     db.session.add(user)
     db.session.commit()
     flash('You can now login.')
