@@ -104,7 +104,7 @@ function show(s, idx, ttl){
 }
 
 function setpic(newpic, newidx, ttlidx){
-	question = "What is the usage condition of the room? 1. Meeting 2. Lecture 3. Study 4. Empty 5. Others(Please describe)";
+	question = "Which of the following word best describes the usage of this room? 1. Meeting 2. Lecture 3. Study 4. Empty 5. Others(Please describe in your words)";
 	document.getElementById('question').innerHTML = question;
 	
 	picObj = document.getElementById('pic');
